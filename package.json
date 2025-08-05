@@ -1,0 +1,35 @@
+{
+    "name": "rhmt.uz-history-fiscal-qr",
+    "version": "0.0.1",
+    "description": "rhmt.uz history fiscal qr downloader",
+    "author": {
+        "name": "MiraSayon",
+        "url": "https://github.com/mirasayon",
+        "email": "mirasayon@ya.ru"
+    },
+    "type": "module",
+    "scripts": {
+        "dev": "tsx watch --env-file=.env.development src/app/startup.ts",
+        "ts:watch": "tspc -w -p ./tsconfig.json",
+        "test:common": "tsx --env-file=.env.test src/tests/common.ts",
+        "start": "node --env-file=.env dist/app/startup.js",
+        "build": "rimraf dist && tspc -p ./tsconfig.json"
+    },
+    "dependencies": {
+        "cheerio": "^1.1.2",
+        "delay": "^6.0.0",
+        "puppeteer": "^24.15.0",
+        "telegraf": "^4.16.3",
+        "zod": "^4.0.14"
+    },
+    "devDependencies": {
+        "@types/node": "^24.2.0",
+        "rimraf": "^6.0.1",
+        "tsx": "^4.20.3",
+        "ts-patch": "^3.3.0",
+        "typegram": "^5.2.0",
+        "typescript": "^5.9.2",
+        "typescript-transform-paths": "^3.5.5"
+    }
+}
+

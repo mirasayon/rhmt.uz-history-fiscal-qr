@@ -1,0 +1,8 @@
+/node_modules
+.env.*
+.env
+/dist
+drafts.md
+todos.md
+/resources/static/qrcodes
+.vscode
