@@ -1,7 +1,7 @@
 import { forMsgType3L } from "#/common/for-message-type-3-lenght.js";
 import { forMsgType4L } from "#/common/for-message-type-4-lenght.js";
 import { Env } from "#/configs/environment.js";
-import { ImATeapot } from "#/configs/settings.js";
+import { start_msg } from "#/configs/settings.js";
 import { NeededCtx } from "#/types/app.js";
 import { forward_metadataType } from "#/types/bot.js";
 import { Validator } from "#/validators/request.js";
@@ -18,7 +18,7 @@ bot.use(async (ctx, next) => {
         return await next();
     }
 });
-bot.start((ctx) => ctx.reply(ImATeapot));
+bot.start((ctx) => ctx.reply(start_msg));
 
 bot.on(message("forward_origin"), Validator, async (ctx) => {
     const msg = ctx.message as unknown as Required<Message.TextMessage> & forward_metadataType;
@@ -30,8 +30,11 @@ bot.on(message("forward_origin"), Validator, async (ctx) => {
         return await forMsgType4L(ctx as NeededCtx);
     }
 });
-bot.launch({});
-console.log("Bot started");
-
-process.once("SIGINT", () => bot.stop("SIGINT"));
-process.once("SIGTERM", () => bot.stop("SIGTERM"));
+async function main() {
+    bot.launch(() => {
+        console.log("Bot started");
+        process.once("SIGINT", () => bot.stop("SIGINT"));
+        process.once("SIGTERM", () => bot.stop("SIGTERM"));
+    });
+}
+main();

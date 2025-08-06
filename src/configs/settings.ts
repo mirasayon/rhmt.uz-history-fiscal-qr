@@ -3,5 +3,5 @@ export const Service_Setting = new (class Service_Settings {
 })();
 
 export const timeout = 100000000;
-export const ImATeapot = "I am a teapot" as const;
+export const start_msg = "Hi. Forward to here the history message(s) from @RahmatRobot" as const;
 
