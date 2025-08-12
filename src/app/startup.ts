@@ -1,6 +1,6 @@
 import { forMsgType3L } from "#/common/for-message-type-3-lenght.js";
 import { forMsgType4L } from "#/common/for-message-type-4-lenght.js";
-import { Env } from "#/configs/environment.js";
+import { botToken, forUser } from "#/configs/environment.js";
 import { start_msg } from "#/configs/settings.js";
 import { NeededCtx } from "#/types/app.js";
 import { forward_metadataType } from "#/types/bot.js";
@@ -9,14 +9,17 @@ import { Telegraf } from "telegraf";
 import { message } from "telegraf/filters";
 import { Message } from "telegraf/types";
 
-const bot = new Telegraf(Env.bot_token, {});
+const bot = new Telegraf(botToken, {});
 bot.use(async (ctx, next) => {
     if (!ctx.from) {
         return;
     }
-    if (ctx.from.username === Env.for_username) {
-        return await next();
+    if (forUser) {
+        if (ctx.from.username !== forUser) {
+            return;
+        }
     }
+    return next();
 });
 bot.start((ctx) => ctx.reply(start_msg));
 

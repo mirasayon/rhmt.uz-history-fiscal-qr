@@ -9,23 +9,23 @@
     },
     "type": "module",
     "scripts": {
-        "dev": "tsx watch --env-file=.env.development src/app/startup.ts",
+        "dev": "concurrently \"npm run ts:watch\" \"node --env-file=.env --watch-path=.env --watch --watch-preserve-output ./dist/app/startup.js\"",
         "ts:watch": "tspc -w -p ./tsconfig.json",
-        "test:common": "tsx --env-file=.env.test src/tests/common.ts",
+        "test:common": "tsx --env-file=.env src/tests/common.ts",
         "start": "tsx --env-file=.env src/app/startup.ts",
         "build": "rimraf dist && tspc -p ./tsconfig.json"
     },
     "dependencies": {
         "cheerio": "^1.1.2",
         "delay": "^6.0.0",
-        "puppeteer": "^24.16.0",
+        "puppeteer": "^24.16.1",
         "telegraf": "^4.16.3",
-        "zod": "^4.0.15"
+        "zod": "^4.0.17"
     },
     "devDependencies": {
-        "@types/node": "^24.2.0",
+        "@types/node": "^24.2.1",
+        "concurrently": "^9.2.0",
         "rimraf": "^6.0.1",
-        "tsx": "^4.20.3",
         "ts-patch": "^3.3.0",
         "typegram": "^5.2.0",
         "typescript": "^5.9.2",
